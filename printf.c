@@ -26,8 +26,16 @@ int handle_conversion(char **format, va_list args)
 			{
 			char *str = va_arg(args, char *);
 
-			_puts(str);
-			count += strlen(str);
+			if (str == NULL)
+			{
+				_puts("(nil)");
+				count += 6;
+			}
+			else
+			{
+				_puts(str);
+				count += strlen(str);
+			}
 			break;
 			}
 		case 'd':
