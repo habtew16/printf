@@ -14,12 +14,14 @@
 int handle_conversion(char **format, va_list args)
 {
 	int count;
+	unsigned char ch;
 
 	count = 0;
 	switch (*(*format)++)
 	{
 		case 'c':
-			_putchar(va_arg(args, int));
+			ch = (unsigned char)va_arg(args, int);
+			_putchar((char)ch);
 			count++;
 			break;
 		case 's':
