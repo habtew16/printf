@@ -78,5 +78,8 @@ int _printf(char *format, ...)
 		}
 	}
 	va_end(args);
-	return (count);
+	if (count == -1)
+		return (-1);
+	else
+		return (count);
 }
