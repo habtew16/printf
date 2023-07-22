@@ -1,18 +1,20 @@
 #include "main.h"
-
+#include <unistd.h>
 /**
  * _puts - function to print array of chars
  * @s: string or array of characyers
- * no return
-*/
+ * Return: count of string
+ */
 
-void _puts(char *s)
+int _puts(char *s)
 {
-	int i;
+	long int len;
 
-	for (i = 0; s[i] != '\0'; i++)
+	while (*s)
 	{
-		_putchar(s[i]);
+		write(1, s, 1);
+		len++;
+		s++;
 	}
+	return (len);
 }
-
