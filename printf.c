@@ -2,54 +2,6 @@
 #include <string.h>
 #include "main.h"
 
-
-/**
- * handle_conversion - function to check characters
- * after % and convert accordingly
- * @format: string to be checked
- * @args: list of arguments
- * Return: returns count of successful prints
-*/
-
-int handle_conversion(char **format, va_list args)
-{
-	int count;
-	unsigned char ch;
-
-	count = 0;
-	switch (*(*format)++)
-	{
-		case 'c':
-			ch = (unsigned char)va_arg(args, int);
-			_putchar((char)ch);
-			count++;
-			break;
-		case 's':
-			{
-			char *str = va_arg(args, char *);
-
-			_puts(str);
-			count += strlen(str);
-			break;
-			}
-		case 'd':
-		case 'i':
-			_print_number(va_arg(args, int));
-			count++;
-			break;
-		case '%':
-			_putchar('%');
-			count++;
-			break;
-		default:
-			_putchar('%');
-			_putchar(*(*format - 1));
-			count += 2;
-			break;
-	}
-	return (count);
-}
-
 /**
  * _printf - to print argumennts passed
  * @format: string that defines format
@@ -65,23 +17,42 @@ int _printf(char *format, ...)
 	count = 0;
 	va_start(args, format);
 
-	while (*format != '\0')
-	{
-		if (*format == '%')
-		{
-			format++;
-			count += handle_conversion(&format, args);
-		}
-		else
-		{
-			_putchar(*format);
-			count++;
-			format++;
-		}
-	}
-	va_end(args);
-	if (count == -1)
-		return (-1);
-	else
-		return (count);
+	while (*format) {
+        if (*format == '%') {
+            format++;
+            switch (*format) {
+                case 'c':
+                    {
+                        char c = (char)va_arg(args, int);
+                        _putchar(c);
+                        count++;
+                        break;
+                    }
+                case 's':
+                    {
+                        const char *str = va_arg(args, const char *);
+                        while (*str) {
+                            _putchar(*str);
+                            str++;
+                            count++;
+                        }
+                        break;
+                    }
+                case '%':
+                    _putchar('%');
+                    count++;
+                    break;
+                default:
+                    break;
+            }
+        } else {
+            _putchar(*format);
+            count++;
+        }
+        format++;
+    }
+
+    va_end(args);
+
+    return (count);
 }
