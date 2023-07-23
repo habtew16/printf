@@ -54,9 +54,9 @@ int print_int(va_list number)
 
 		powten = 1;
 
-		for (j = 1; j <= len - 1; j++)
+		for (j = 0; j < len - 1; j++)
 			powten *= 10;
-		for (j = 1; j <= len; j++)
+		for (j = 0; j < len; j++)
 		{
 			digit = n / powten;
 			if (n < 0)
