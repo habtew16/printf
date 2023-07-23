@@ -3,8 +3,10 @@
 #include <stdarg.h>
 
 int _putchar(char c);
-int _puts(char *s);
-void _print_number(int num);
+int _putc(va_list c);
+int _puts(va_list s);
+int print_int(va_list number);
+int print_mod(void);
 int _printf(const char *format, ...);
 
 

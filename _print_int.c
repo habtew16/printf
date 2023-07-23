@@ -1,41 +1,77 @@
 #include "main.h"
 
 /**
- * _print_number - prints integer passed
- * @num: nnumber
- * no return
-*/
+ * count_digits - function that counts the number of digits in an integer.
+ * @n: The integer for which we need to count the digits.
+ * Return: The number of digits in the integer.
+ */
 
-void _print_number(int num)
+
+int count_digits(int n)
 {
-	char numberString[20];
+	int count;
+
+	count = 0;
+
+	if (n == 0)
+		return (1);
+
+	if (n < 0)
+	{
+		n = -n;
+	}
+
+	while (n != 0)
+	{
+		n /= 10;
+		count++;
+	}
+
+	return (count);
+}
+
+/**
+ * print_int - to convert and print given numer in decimal and int
+ * @number: number to print
+ * Return: number or correctly prinnnted nnnumbers
+ */
+int print_int(va_list number)
+{
+	int n;
+	int count;
+	int num;
+	int powten;
 	int i;
-	int digit;
 
-	i = 0;
+	n = va_arg(number, int);
+	count = count_digits(n);
 
-	if (num == 0)
+	if (n == 0)
 	{
-		numberString[i++] = '0';
-	}
-	else
-	{
-		if (num < 0)
-		{
-			_putchar('-');
-			num = -num;
-		}
-		while (num != 0)
-		{
-			digit = num % 10;
-			num /= 10;
-			numberString[i++] = digit + '0';
-		}
+		_putchar('0');
+		return (1);
 	}
 
-	while (i > 0)
+	if (n < 0)
 	{
-		_putchar(numberString[--i]);
+		_putchar('-');
+		n = -n;
 	}
+
+	powten = 1;
+	for (i = 1; i < count; i++)
+		powten *= 10;
+
+
+	while (count > 0)
+	{
+		num = n / powten;
+		_putchar(num + '0');
+		n -= num * powten;
+		powten /= 10;
+		count--;
+	}
+
+	return (count);
 }
 

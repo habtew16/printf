@@ -1,20 +1,30 @@
 #include "main.h"
-#include <unistd.h>
+#include <stdlib.h>
+#include <stdarg.h>
 /**
- * _puts - function to print array of chars
- * @s: string or array of characyers
- * Return: count of string
- */
+* _puts - converts format to string and prints it to
+* standard output console
+* @s: array of characters to bbe printed
+* Return: count of  characters succesfully  printed.
+*/
 
-int _puts(char *s)
+int _puts(va_list s)
 {
-	long int len;
+	char *str;
+	int count;
 
-	while (*s)
+	str = va_arg(s, char *);
+	count = 0;
+
+	if (str == NULL)
+		str = "(null)";
+
+	while (str[count])
 	{
-		write(1, s, 1);
-		len++;
-		s++;
+		_putchar(str[count]);
+	count++;
 	}
-	return (len);
+
+	return (count);
 }
+

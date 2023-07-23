@@ -1,87 +1,82 @@
 #include <stdarg.h>
-#include <string.h>
+#include <unistd.h>
 #include "main.h"
-
+#include <stdlib.h>
 
 /**
- * handle_conversion - function to check characters
- * after % and convert accordingly
- * @format: string to be checked
- * @args: list of arguments
- * Return: returns count of successful prints
-*/
+ * find_format_function - finds corresponding forat from format
+ * specifier and calls function related to
+ * that format
+ * @format: The format specifier.
+ * Return:the address of the function related to format
+ */
 
-int handle_conversion(const char **format, va_list args)
+
+int (*find_format_function(const char *format))(va_list)
 {
-	int count;
-	unsigned char ch;
+	char c = *format;
 
-	count = 0;
-	switch (*(*format)++)
+	switch (c)
 	{
-		case 'c':
-			ch = (unsigned char)va_arg(args, int);
-			_putchar((char)ch);
-			count++;
-			break;
-		case 's':
-			{
-			char *str = va_arg(args, char *);
-
-			_puts(str);
-			count += strlen(str);
-			break;
-			}
-		case 'd':
-		case 'i':
-			_print_number(va_arg(args, int));
-			count++;
-			break;
-		case '%':
-			_putchar('%');
-			count++;
-			break;
-		default:
-			_putchar('%');
-			_putchar(*(*format - 1));
-			count += 2;
-			break;
+	case 'c':
+		return (_putc);
+	case 's':
+		return (_puts);
+	case 'd':
+	case 'i':
+		return (print_int);
+	default:
+		return (NULL);
 	}
-	return (count);
 }
 
-/**
- * _printf - to print argumennts passed
- * @format: string that defines format
- * Return: returns count of success prints
-*/
 
+/**
+ * _printf - custom function to print string with format
+ * @format: strinng which contains format
+ * Return: count of characters printed.
+ */
 
 int _printf(const char *format, ...)
 {
 	va_list args;
+	int (*find_format)(va_list);
+	unsigned int i;
 	int count;
 
+	i = 0;
 	count = 0;
-	va_start(args, format);
 
-	while (*format != '\0')
+	if (format == NULL)
+		return (-1);
+	va_start(args, format);
+	while (format[i])
 	{
-		if (*format == '%')
+		while (format[i] != '%' && format[i])
 		{
-			format++;
-			count += handle_conversion(&format, args);
-		}
-		else
-		{
-			_putchar(*format);
+			_putchar(format[i]);
 			count++;
-			format++;
+			i++;
 		}
+		if (format[i] == '\0')
+			return (count);
+		find_format = find_format_function(&format[i + 1]);
+		if (find_format != NULL)
+		{
+			count += find_format(args);
+			i += 2;
+			continue;
+		}
+		if (!format[i + 1])
+			return (-1);
+		_putchar(format[i]);
+		count++;
+		if (format[i + 1] == '%')
+			i += 2;
+		else
+			i++;
 	}
 	va_end(args);
-	if (count == -1)
-		return (-1);
-	else
-		return (count);
+	return (count);
 }
+
