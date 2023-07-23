@@ -22,7 +22,7 @@ int _puts(va_list s)
 	while (str[count])
 	{
 		_putchar(str[count]);
-	count++;
+		count++;
 	}
 
 	return (count);
