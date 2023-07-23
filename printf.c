@@ -23,6 +23,7 @@ int (*find_format_function(const char *format))(va_list)
 	case 's':
 		return (_puts);
 	case 'd':
+		return (print_int);
 	case 'i':
 		return (print_int);
 	default:
