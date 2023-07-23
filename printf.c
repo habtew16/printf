@@ -18,8 +18,6 @@ int (*find_format_function(const char *format))(va_list)
 
 	switch (c)
 	{
-	case 'c':
-		return (_putc);
 	case 's':
 		return (_puts);
 	case 'd':
