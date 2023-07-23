@@ -15,8 +15,6 @@ size_t get_binary_length(size_t num)
 
 	digits = 0;
 
-	if (num == 0)
-		return (1);
 	while (num != 0)
 	{
 		num /= 2;
