@@ -4,7 +4,7 @@
 #include <stdlib.h>
 
 /**
- * find_format_function - finds corresponding forat from format
+ * _find_format - finds corresponding forat from format
  * specifier and calls function related to
  * that format
  * @format: The format specifier.
@@ -19,7 +19,7 @@ int (*_find_format(const char *format))(va_list)
 	switch (c)
 	{
 	case 'c':
-		return (_putc);	
+		return (_putc);
 	case 's':
 		return (_puts);
 	case 'd':
