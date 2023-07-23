@@ -19,6 +19,7 @@ int count_digits(int n)
 	if (n < 0)
 	{
 		n = -n;
+		count++;
 	}
 
 	while (n != 0)
@@ -39,6 +40,7 @@ int print_int(va_list number)
 {
 	int n;
 	int count;
+	int total_count;
 	int num;
 	int powten;
 	int i;
@@ -63,6 +65,7 @@ int print_int(va_list number)
 		powten *= 10;
 
 
+	total_count = count;
 	while (count > 0)
 	{
 		num = n / powten;
@@ -72,6 +75,6 @@ int print_int(va_list number)
 		count--;
 	}
 
-	return (count);
+	return (total_count);
 }
 
