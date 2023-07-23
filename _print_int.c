@@ -16,12 +16,6 @@ int count_digits(int n)
 	if (n == 0)
 		return (1);
 
-	if (n < 0)
-	{
-		n = -n;
-		count++;
-	}
-
 	while (n != 0)
 	{
 		n /= 10;
@@ -36,45 +30,48 @@ int count_digits(int n)
  * @number: number to print
  * Return: number or correctly prinnnted nnnumbers
  */
+
 int print_int(va_list number)
 {
+	int len;
+	int powten;
+	int j;
+	int digit;
 	int n;
 	int count;
-	int total_count;
-	int num;
-	int powten;
-	int i;
 
+	count = 0;
 	n = va_arg(number, int);
-	count = count_digits(n);
+	len = count_digits(n);
 
-	if (n == 0)
+	if (n != 0)
+	{
+		if (n < 0)
+		{
+			n *= -1;
+			_putchar('-');
+			count++;
+		}
+
+		powten = 1;
+
+		for (j = 1; j <= len - 1; j++)
+			powten *= 10;
+		for (j = 1; j <= len; j++)
+		{
+			digit = n / powten;
+			_putchar(digit + '0');
+			count++;
+			n -= digit * powten;
+			powten /= 10;
+		}
+	}
+	else
 	{
 		_putchar('0');
 		return (1);
 	}
+	return (count);
 
-	if (n < 0)
-	{
-		_putchar('-');
-		n = -n;
-	}
-
-	powten = 1;
-	for (i = 1; i < count; i++)
-		powten *= 10;
-
-
-	total_count = count;
-	while (count > 0)
-	{
-		num = n / powten;
-		_putchar(num + '0');
-		n -= num * powten;
-		powten /= 10;
-		count--;
-	}
-
-	return (total_count);
 }
 
