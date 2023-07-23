@@ -51,9 +51,7 @@ int print_int(va_list number)
 			_putchar('-');
 			count++;
 		}
-
 		powten = 1;
-
 		for (j = 1; j <= len - 1; j++)
 			powten *= 10;
 		for (j = 1; j <= len; j++)

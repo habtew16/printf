@@ -18,15 +18,15 @@ int (*_find_format(const char *format))(va_list)
 
 	switch (c)
 	{
-	case 'c':
-		return (_putc);
-	case 's':
-		return (_puts);
-	case 'd':
-	case 'i':
-		return (print_int);
-	default:
-		return (NULL);
+		case 'c':
+			return (_putc);
+		case 's':
+			return (_puts);
+		case 'd':
+		case 'i':
+			return (print_int);
+		default:
+			return (NULL);
 	}
 }
 
