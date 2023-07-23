@@ -48,7 +48,6 @@ int print_int(va_list number)
 	{
 		if (n < 0)
 		{
-			n *= -1;
 			_putchar('-');
 			count++;
 		}
@@ -60,7 +59,10 @@ int print_int(va_list number)
 		for (j = 1; j <= len; j++)
 		{
 			digit = n / powten;
-			_putchar(digit + '0');
+			if (n < 0)
+				_putchar((digit * -1) + 48);
+			else
+				_putchar(digit + '0');
 			count++;
 			n -= digit * powten;
 			powten /= 10;
