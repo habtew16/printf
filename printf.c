@@ -12,12 +12,14 @@
  */
 
 
-int (*find_format_function(const char *format))(va_list)
+int (*_find_format(const char *format))(va_list)
 {
 	char c = *format;
 
 	switch (c)
 	{
+	case 'c':
+		return (_putc);	
 	case 's':
 		return (_puts);
 	case 'd':
@@ -58,7 +60,7 @@ int _printf(const char *format, ...)
 		}
 		if (format[i] == '\0')
 			return (count);
-		find_format = find_format_function(&format[i + 1]);
+		find_format = _find_format(&format[i + 1]);
 		if (find_format != NULL)
 		{
 			count += find_format(args);
