@@ -1,0 +1,97 @@
+.TH PRINTF 1 "July 2023" "Version 1.1" "User Commands"
+
+.SH NAME
+_printf \- format and print data
+
+.SH SYNOPSIS
+.B _printf
+[\fIOPTION\fR]... \fIFORMAT\fR \fIARGUMENT\fR...
+
+.SH DESCRIPTION
+\fB_printf\fR is a custom implementation of the standard C library function `printf`, which is used for formatted output to the standard output stream. This custom version, `_printf`, provides similar functionality to the standard `printf` function and supports various format specifiers.
+
+.SH HOW TO USE
+To use the custom \fB_printf\fR function in your C code, follow these steps:
+1. Include the "main.h" header file in your C source file.
+2. Call the \fB_printf\fR function in your code with the desired format string and arguments.
+
+.SH SUPPORTED CONVERSION SPECIFIERS
+The custom \fB_printf\fR function supports the following conversion specifiers:
+- \fI%c\fR : Character
+- \fI%s\fR : String
+- \fI%i\fR or \fI%d\fR : Integer (signed decimal)
+- \fI%u\fR : Unsigned Integer (unsigned decimal)
+- \fI%r\fR : Reverse the string (Rot13 encoding)
+- \fI%b\fR : Binary
+- \fI%R\fR : Rot13 encoding
+
+.SH FUNCTION DESCRIPTIONS
+1. \fBint _putchar(char c);\fR: This function is used to write a character to the standard output using the unistd library.
+
+2. \fBint _putc(va_list c);\fR: This function is used to convert formatted characters and print them to the standard output, returning the count of characters printed.
+
+3. \fBint _puts(va_list s);\fR: This function is used to convert formatted strings and print them to the standard output.
+
+4. \fBint print_int(va_list number);\fR: This function is used to convert and print decimals and integers.
+
+5. \fBint print_mod(void);\fR: This function prints the second `%` if it comes after another `%`.
+
+6. \fBunsigned int get_binary_length(unsigned int num);\fR: This function gets the length of the binary number to be printed to the standard output.
+
+7. \fBint _printb(va_list args);\fR: This function prints binary numbers using the binary length obtained from the \fBget_binary_length\fR function.
+
+8. \fBint print_rev(va_list str);\fR: This function reverses a given string and prints it to the standard output.
+
+9. \fBint print_rot13(va_list R);\fR: This function prints a string in Rot13 encoding using \fBva_list\fR.
+
+10. \fBint _printf(const char *format, ...);\fR: This is the main function for formatted output. It takes a format string \fIformat\fR and optional arguments, similar to `printf`.
+
+.SH EXAMPLE USAGE
+.B Example:
+.sp
+.nf
+#include "main.h"
+#include <stdio.h>
+
+int main(void)
+{
+    char *name = "John";
+    int age = 25;
+
+    _printf("Name: %s, Age: %d\n", name, age);
+
+    return (0);
+}
+.fi
+.SH OUTPUT
+.B Example Output:
+.sp
+.nf
+Name: John, Age: 25
+.fi
+
+.SH CONTRIBUTORS
+The following contributors have participated in the development of this custom `_printf` project:
+- [Habtamu Gebre](https://github.com/habtew16)
+- [Sophia Odioko](https://github.com/Eloho23)
+
+.SH SEE ALSO
+printf(3)
+
+.SH BUGS
+Report bugs at the project's GitHub repository: https://github.com/habtew/printf
+
+.SH COPYRIGHT
+Copyright (c) YEAR YOUR_NAME. This program is free software;
+you can redistribute it and/or modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
+
+.SH DISCLAIMER
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+See the GNU General Public License for more details.
+
+.SH AUTHOR
+Habtamu Gebre <habtamuwolde96@gmail.com>
+Sophia Odioko <odiokosophia@gmail.com>
+
