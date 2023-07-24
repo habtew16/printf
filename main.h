@@ -10,7 +10,7 @@ int _putc(va_list c);
 int _puts(va_list s);
 int print_int(va_list number);
 int print_mod(void);
-size_t get_binary_length(size_t num);
+unsigned int get_binary_length(unsigned int num);
 int _printb(va_list args);
 int _printf(const char *format, ...);
 

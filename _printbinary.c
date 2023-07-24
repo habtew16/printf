@@ -9,7 +9,7 @@
 * Return: return the length og the binary
 */
 
-size_t get_binary_length(size_t num)
+unsigned int get_binary_length(unsigned int num)
 {
 	size_t digits;
 
@@ -31,10 +31,10 @@ size_t get_binary_length(size_t num)
 
 int _printb(va_list args)
 {
-	size_t n, num_digits, digit, j, pow_two;
+	unsigned int n, num_digits, digit, j, pow_two;
 	int count;
 
-	n = va_arg(args, size_t);
+	n = va_arg(args, unsigned int);
 	num_digits = get_binary_length(n);
 	pow_two = 1;
 	count = 0;
