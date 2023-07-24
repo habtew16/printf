@@ -29,6 +29,8 @@ int (*_find_format(const char *format))(va_list)
 			return (_printb);
 		case 'r':
 			return (print_rev);
+		case 'R':
+			return (print_rot13);
 		default:
 			return (NULL);
 	}
