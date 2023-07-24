@@ -10,28 +10,27 @@
 
 int print_rot13(va_list R)
 {
-	int i, j, count;
-	char  *r;
-	char part1[52] = "aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ";
-	char part2[52] = "nNoOpPqQrRsStTuUvVwWxXyYzZaAbBcCdDeEfFgGhHiIjJkKlLmM";
+	int i, count;
+	char *r, base;
 
 	count = 0;
 
 	r = va_arg(R, char *);
-
 	if (r == NULL)
 		r = "(null)";
 
 	for (i = 0; r[i] != '\0'; i++)
 	{
-		for (j = 0; part1[j] != '\0'; j++)
+		if ((r[i] >= 'A' && r[i] <= 'Z') || (r[i] >= 'a' && r[i] <= 'z'))
 		{
-			if (r[i] == part1[j])
-			{
-				_putchar(part2[i]);
-				count++;
-				break;
-			}
+			base = (r[i] >= 'a' && r[i] <= 'z') ? 'a' : 'A';
+			_putchar(((r[i] - base + 13) % 26) + base);
+			count++;
+		}
+		else
+		{
+			_putchar(r[i]);
+			count++;
 		}
 	}
 	return (count);
