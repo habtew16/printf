@@ -1,29 +1,32 @@
 #include <stdarg.h>
-#include <stdlib.h>
-#include "main"
+#include "main.h"
 
 /**
- * print_rev - function to reverse string and print
- * the reversed string
- * @str: string to be reveresed
- * Return: returns the number of succesfully printe characters
-*/
-
+ * print_rev - function to reverse and print
+ * givenn string
+ * @str: string to be pritned
+ * Return: count of succesful characters printed
+ */
 
 int print_rev(va_list str)
 {
-	int i, count;
-	char *s;
-
-	s = va_arg(str, char *);
-	count = 0;
+	int i;
+	char *s = va_arg(str, char *);
+	int count = 0;
 
 	if (s == NULL)
-		s = ")llun(";
+		s = "(null)";
+
 	while (s[count])
+	{
+		if (s[count] == '\x01')
+			s[count] = ' ';
 		count++;
-	for (i = count - 1; i >= 0; i--)
-		_putchar(s[i]);
+	}
+
+	for (i = len - 1; i >= 0; i--)
+		_putchar(st[i]);
 
 	return (count);
 }
+
