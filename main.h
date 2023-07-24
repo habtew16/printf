@@ -12,6 +12,7 @@ int print_int(va_list number);
 int print_mod(void);
 unsigned int get_binary_length(unsigned int num);
 int _printb(va_list args);
+int print_rev(va_list str);
 int _printf(const char *format, ...);
 
 
