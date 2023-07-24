@@ -24,8 +24,8 @@ int print_rev(va_list str)
 		count++;
 	}
 
-	for (i = len - 1; i >= 0; i--)
-		_putchar(st[i]);
+	for (i = count - 1; i >= 0; i--)
+		_putchar(s[i]);
 
 	return (count);
 }
